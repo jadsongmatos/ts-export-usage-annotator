@@ -98,6 +98,7 @@ Sobrescreve os arquivos originais com as anotações.
 - **Path aliases**: suporte a `baseUrl` e `paths` do `tsconfig.json`
 - **tsconfig com comentários**: aceita `/* */` e `//` no tsconfig.json
 - **Exclude inteligente**: diretórios como `node_modules`, `dist`, `coverage` são pulados automaticamente (não entra nem no diretório)
+- **Include inteligente**: nomes de diretório em `include` (ex: `"src"`) são expandidos para `src/**/*`, igual o TypeScript faz
 
 ## Testando com os fixtures
 

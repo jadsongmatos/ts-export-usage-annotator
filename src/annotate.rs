@@ -116,7 +116,9 @@ pub fn write_output(
         .map(|p| p.to_path_buf())
         .unwrap_or_else(|| tsconfig_dir.join(".annotated"));
 
-    let rel = pathdiff::diff_paths(input_file, tsconfig_dir)
+    let tsconfig_dir_abs = tsconfig_dir.canonicalize().unwrap_or_else(|_| tsconfig_dir.to_path_buf());
+    let input_abs = input_file.canonicalize().unwrap_or_else(|_| input_file.to_path_buf());
+    let rel = pathdiff::diff_paths(&input_abs, &tsconfig_dir_abs)
         .unwrap_or_else(|| input_file.to_path_buf());
     let out_file = out_dir.join(&rel);
 

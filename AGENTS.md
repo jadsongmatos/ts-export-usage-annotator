@@ -41,6 +41,7 @@ These cost significant debugging time:
 - UI strings and comments are in Portuguese: `/* Export {name} usado por: {paths} */`
 - `canonicalize()` is used for file identity — all ExportKey.file paths are canonical. Import resolution must also produce canonical paths for matching to work.
 - Re-exports (`export { X } from './y'`) are tracked as imports from the source file, but `index.ts` re-exports are not registered as exports themselves (only source file exports are annotated). Transitve tracking through re-export barrels is not implemented.
+- `include` patterns in tsconfig are normalized: plain directory names like `"src"` are expanded to `src/**/*` (matching TypeScript's behavior). Patterns with globs (`*`) are kept as-is.
 - `ParsedFile.source_file` field was removed — don't add it back; it caused an Arc/Lrc type mismatch and wasn't needed.
 
 ## Test Fixtures

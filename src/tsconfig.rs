@@ -55,6 +55,17 @@ fn normalize_exclude(raw: &str) -> String {
     }
 }
 
+fn normalize_include(raw: &str) -> String {
+    if raw.contains('*') {
+        raw.to_string()
+    } else if raw.contains('/') || raw.contains('\\') {
+        let trimmed = raw.trim_end_matches('/').trim_end_matches('\\');
+        format!("{}/**/*", trimmed)
+    } else {
+        format!("{}/**/*", raw)
+    }
+}
+
 pub fn discover_files(tsconfig: &TsConfig, tsconfig_dir: &Path) -> Result<Vec<PathBuf>> {
     if let Some(explicit) = &tsconfig.files {
         let mut files = Vec::new();
@@ -68,11 +79,14 @@ pub fn discover_files(tsconfig: &TsConfig, tsconfig_dir: &Path) -> Result<Vec<Pa
         return Ok(files);
     }
 
-    let include_patterns = tsconfig
+    let include_patterns: Vec<String> = tsconfig
         .include
         .as_ref()
         .cloned()
-        .unwrap_or_else(|| vec!["**/*.ts".into(), "**/*.tsx".into()]);
+        .unwrap_or_else(|| vec!["**/*.ts".into(), "**/*.tsx".into()])
+        .iter()
+        .map(|p| normalize_include(p))
+        .collect();
 
     let exclude_patterns = tsconfig
         .exclude
