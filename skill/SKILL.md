@@ -1,14 +1,6 @@
 ---
 name: ts-export-usage-annotator
-description: |
-Anota exports TypeScript com comentarios indicando quais arquivos os utilizam.
-Use esta skill sempre que o usuario quiser: encontrar exports nao usados (dead code),
-rastrear quem importa um export especifico, mapear dependencias entre arquivos TS,
-visualizar como exports se propagam entre modulos/pacotes, ou adicionar comentarios
-de uso em exports. Tambem use quando o usuario mencionar "exports nao usados",
-"quem usa esta funcao/constante/classe", "anotar exports", "mapear importacoes",
-"dead code em TypeScript", ou "dependencias entre modulos"
-— mesmo que nao mencione a ferramenta pelo nome.
+description: "Anota exports TypeScript com comentarios indicando quais arquivos os utilizam. Use esta skill sempre que o usuario quiser: encontrar exports nao usados (dead code), rastrear quem importa um export especifico, mapear dependencias entre arquivos TS, visualizar como exports se propagam entre modulos/pacotes, ou adicionar comentarios de uso em exports. Tambem use quando o usuario mencionar exports nao usados, quem usa esta funcao/constante/classe, anotar exports, mapear importacoes, dead code em TypeScript, ou dependencias entre modulos -- mesmo que nao mencione a ferramenta pelo nome."
 ---
 
 # ts-export-usage-annotator
